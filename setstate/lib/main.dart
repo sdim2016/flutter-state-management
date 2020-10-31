@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:setstate/utils/material_color.dart';
 import 'package:setstate/view/main_screen.dart';
 
 void main() {

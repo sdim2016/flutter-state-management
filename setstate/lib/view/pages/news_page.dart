@@ -6,7 +6,8 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final notes = [
       News('News 1', 'Demo text 12321312321'),
-      News('News 2', 'Demo text 12321312321')
+      News('News 2', 'Demo text 12321312321'),
+      News('News 3', 'Demo text 12321312321')
     ];
     return Container(
       child: ListView.builder(
