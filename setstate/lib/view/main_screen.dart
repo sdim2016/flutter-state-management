@@ -55,6 +55,7 @@ class _MainScreenState extends State<MainScreen> {
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      backgroundColor: Color.fromARGB(255, 240, 240, 240),
     );
   }
 }
