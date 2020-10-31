@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:setstate/utils/note_mode.dart';
 import 'package:setstate/view/pages/news_page.dart';
+import 'package:setstate/view/pages/note_view_page.dart';
 import 'package:setstate/view/pages/notes_page.dart';
 import 'package:setstate/view/pages/settings_page.dart';
 
@@ -51,6 +53,15 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(icon: Icon(Icons.add), onPressed: () {
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return NoteViewPage(viewType: NoteMode.Add,);
+              })
+            );
+          })
+        ],
       ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
