@@ -11,10 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter State Management',
-      theme: ThemeData(
-        primarySwatch: blackColor,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: ThemeData.dark(),
       home: MainScreen(title: 'Flutter State Management'),
     );
   }

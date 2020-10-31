@@ -6,7 +6,7 @@ class NotesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final notes = [
       Note('Title', 'Demo text 12321312321'),
-      Note('Title', 'Demo text 12321312321')
+      Note('Title 2', 'Demo text 12321312321')
     ];
     return Container(
       child: ListView.builder(
@@ -65,9 +65,6 @@ class _NoteContent extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10.0),
       child: Text(
         _text,
-        style: TextStyle(
-          color: Colors.grey.shade700,
-        ),
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
       ),
