@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:setstate/model/news.dart';
+import 'package:setstate/view/pages/news_view_page.dart';
 
 class NewsPage extends StatelessWidget {
   @override
@@ -23,12 +24,27 @@ class NewsPage extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(8.0))),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 30.0, bottom: 30.0, left: 10.0, right: 10.0),
+                        top: 30.0, bottom: 10.0, left: 10.0, right: 10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _NewsTitle(notes[index].title),
-                        _NewsContent(notes[index].text)
+                        NewsTitle(notes[index].title),
+                        NewsContent(notes[index].text),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            OutlineButton(
+                              child: Text('VIEW'),
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return NewsViewPage(title: notes[index].title, content: notes[index].text,);
+                                    })
+                                );
+                              },
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -41,10 +57,10 @@ class NewsPage extends StatelessWidget {
   }
 }
 
-class _NewsTitle extends StatelessWidget {
+class NewsTitle extends StatelessWidget {
 
   final String _title;
-  _NewsTitle(this._title);
+  NewsTitle(this._title);
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +71,10 @@ class _NewsTitle extends StatelessWidget {
   }
 }
 
-class _NewsContent extends StatelessWidget {
+class NewsContent extends StatelessWidget {
 
   final String _text;
-  _NewsContent(this._text);
+  NewsContent(this._text);
 
   @override
   Widget build(BuildContext context) {
