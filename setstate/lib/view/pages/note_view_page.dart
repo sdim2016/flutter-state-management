@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setstate/model/note.dart';
+import 'package:setstate/model/dto/note.dart';
 import 'package:setstate/utils/custom_button.dart';
 import 'package:setstate/utils/note_mode.dart';
 
