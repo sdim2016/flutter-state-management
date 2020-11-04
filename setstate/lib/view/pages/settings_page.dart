@@ -19,14 +19,14 @@ class _SettingsPageState extends State<SettingsPage> {
   bool loading = true;
 
   @override
-  void didChangeDependencies() {
+  void initState() {
     widget.settingsRepository.getSettings().then((value) {
       setState(() {
         darkMode = value;
         loading = false;
       });
     });
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override
