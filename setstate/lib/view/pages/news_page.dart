@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:setstate/model/news.dart';
+import 'package:setstate/model/dto/news_item.dart';
+import 'package:setstate/model/repositories/news_repository.dart';
 import 'package:setstate/view/pages/news_view_page.dart';
 
-class NewsPage extends StatelessWidget {
+class NewsPage extends StatefulWidget {
+
+  final NewsRepository newsRepository;
+
+  const NewsPage({Key key, this.newsRepository}) : super(key: key);
+
+  @override
+  _NewsPageState createState() => _NewsPageState();
+}
+
+class _NewsPageState extends State<NewsPage> {
+
+  List<NewsItem> news;
+  bool loading = true;
+
+  @override
+  void initState() {
+    widget.newsRepository.getNews().then((value) {
+      setState(() {
+        news = value.news;
+        loading = false;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      News('News 1', 'Demo text 12321312321'),
-      News('News 2', 'Demo text 12321312321'),
-      News('News 3', 'Demo text 12321312321')
-    ];
     return Container(
-      child: ListView.builder(
-          itemCount: notes.length,
+      child: loading ? Center(child: CircularProgressIndicator()) : ListView.builder(
+          itemCount: news.length,
           itemBuilder: (context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,8 +49,8 @@ class NewsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        NewsTitle(notes[index].title),
-                        NewsContent(notes[index].text),
+                        NewsTitle(news[index].title),
+                        NewsContent(news[index].content),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -38,7 +59,7 @@ class NewsPage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                      return NewsViewPage(title: notes[index].title, content: notes[index].text,);
+                                      return NewsViewPage(title: news[index].title, content: news[index].content,);
                                     })
                                 );
                               },

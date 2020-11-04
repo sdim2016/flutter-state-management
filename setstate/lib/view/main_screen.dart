@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:setstate/model/repositories/news_repository.dart';
+import 'package:setstate/model/repositories/note_repository.dart';
+import 'package:setstate/model/repositories/settings_repository.dart';
 import 'package:setstate/utils/note_mode.dart';
 import 'package:setstate/view/pages/news_page.dart';
 import 'package:setstate/view/pages/note_view_page.dart';
@@ -6,9 +9,13 @@ import 'package:setstate/view/pages/notes_page.dart';
 import 'package:setstate/view/pages/settings_page.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({Key key, this.title}) : super(key: key);
+  MainScreen({Key key, this.title, this.noteRepository, this.newsRepository, this.settingsRepository, this.setDarkTheme}) : super(key: key);
 
   final String title;
+  final NoteRepository noteRepository;
+  final NewsRepository newsRepository;
+  final SettingsRepository settingsRepository;
+  final Function setDarkTheme;
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -18,11 +25,11 @@ class _MainScreenState extends State<MainScreen> {
 
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    NotesPage(),
-    NewsPage(),
-    SettingsPage()
-  ];
+//  static List<Widget> _widgetOptions = <Widget>[
+//    NotesPage(),
+//    NewsPage(),
+//    SettingsPage()
+//  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -53,9 +60,26 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          if (_selectedIndex == 0) IconButton(icon: Icon(Icons.add), onPressed: () {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) {
+                  return NoteViewPage(viewType: NoteMode.Add,);
+                })
+              );
+          })
+        ],
       ),
       body: Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Builder(
+          builder: (BuildContext context) {
+            switch(_selectedIndex) {
+              case 0: return NotesPage(noteRepository: widget.noteRepository,); break;
+              case 1: return NewsPage(newsRepository: widget.newsRepository,); break;
+              case 2: return SettingsPage(settingsRepository: widget.settingsRepository, setDarkTheme: widget.setDarkTheme,); break;
+              default: return Container(); break;
+            }
+        },),
       ),
     );
   }

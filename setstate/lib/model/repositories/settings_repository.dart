@@ -9,6 +9,7 @@ class SettingsRepository {
 
   Future<bool> getSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('darkMode')) await prefs.setBool('darkMode', false);
     bool darkMode = prefs.getBool('darkMode');
     return darkMode;
   }

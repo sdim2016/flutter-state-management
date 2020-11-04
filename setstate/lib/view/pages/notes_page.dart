@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:setstate/model/dto/note.dart';
+import 'package:setstate/model/repositories/note_repository.dart';
 
-class NotesPage extends StatelessWidget {
+class NotesPage extends StatefulWidget {
+
+  final NoteRepository noteRepository;
+
+  const NotesPage({Key key, this.noteRepository}) : super(key: key);
+
+  @override
+  _NotesPageState createState() => _NotesPageState();
+}
+
+class _NotesPageState extends State<NotesPage> {
+
+  List<Note> notes = [];
+
+  @override
+  void initState() {
+    widget.noteRepository.getNotes().then((value) {
+      setState(() {
+        notes = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      Note('Title', 'Demo text 12321312321'),
-      Note('Title 2', 'Demo text 12321312321')
-    ];
     return Container(
       child: ListView.builder(
           itemCount: notes.length,
