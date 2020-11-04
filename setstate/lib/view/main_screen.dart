@@ -24,6 +24,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   int _selectedIndex = 0;
+  UniqueKey _notesPageKey = UniqueKey();
 
 //  static List<Widget> _widgetOptions = <Widget>[
 //    NotesPage(),
@@ -64,9 +65,13 @@ class _MainScreenState extends State<MainScreen> {
           if (_selectedIndex == 0) IconButton(icon: Icon(Icons.add), onPressed: () {
               Navigator.push(context,
                 MaterialPageRoute(builder: (context) {
-                  return NoteViewPage(viewType: NoteMode.Add,);
+                  return NoteViewPage(viewType: NoteMode.Add, noteRepository: widget.noteRepository,);
                 })
-              );
+              ).then((value) {
+                setState(() {
+                  _notesPageKey = UniqueKey();
+                });
+              });
           })
         ],
       ),
@@ -74,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Builder(
           builder: (BuildContext context) {
             switch(_selectedIndex) {
-              case 0: return NotesPage(noteRepository: widget.noteRepository,); break;
+              case 0: return NotesPage(key: _notesPageKey, noteRepository: widget.noteRepository,); break;
               case 1: return NewsPage(newsRepository: widget.newsRepository,); break;
               case 2: return SettingsPage(settingsRepository: widget.settingsRepository, setDarkTheme: widget.setDarkTheme,); break;
               default: return Container(); break;

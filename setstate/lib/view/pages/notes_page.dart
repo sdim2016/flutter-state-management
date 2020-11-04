@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:setstate/model/dto/note.dart';
 import 'package:setstate/model/repositories/note_repository.dart';
+import 'package:setstate/utils/note_mode.dart';
+import 'package:setstate/view/pages/note_view_page.dart';
 
 class NotesPage extends StatefulWidget {
 
@@ -18,12 +20,16 @@ class _NotesPageState extends State<NotesPage> {
 
   @override
   void initState() {
+    getNotes();
+    super.initState();
+  }
+
+  void getNotes() {
     widget.noteRepository.getNotes().then((value) {
       setState(() {
         notes = value;
       });
     });
-    super.initState();
   }
 
   @override
@@ -35,20 +41,31 @@ class _NotesPageState extends State<NotesPage> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Card(
-                  elevation: 1.0,
-                  margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 30.0, bottom: 30.0, left: 10.0, right: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _NoteTitle(notes[index].title),
-                        _NoteContent(notes[index].text)
-                      ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return NoteViewPage(viewType: NoteMode.Edit, note: notes[index], noteRepository: widget.noteRepository,);
+                      })
+                    ).then((_) {
+                      getNotes();
+                    });
+                  },
+                  child: Card(
+                    elevation: 1.0,
+                    margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 30.0, bottom: 30.0, left: 10.0, right: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _NoteTitle(notes[index].title),
+                          _NoteContent(notes[index].text)
+                        ],
+                      ),
                     ),
                   ),
                 ),

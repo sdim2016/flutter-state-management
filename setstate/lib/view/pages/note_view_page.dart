@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:setstate/model/dto/note.dart';
+import 'package:setstate/model/repositories/note_repository.dart';
 import 'package:setstate/utils/custom_button.dart';
 import 'package:setstate/utils/note_mode.dart';
 
@@ -7,8 +8,9 @@ class NoteViewPage extends StatefulWidget {
 
   final NoteMode viewType;
   final Note note;
+  final NoteRepository noteRepository;
 
-  const NoteViewPage({Key key, this.viewType, this.note}) : super(key: key);
+  const NoteViewPage({Key key, this.viewType, this.note, this.noteRepository}) : super(key: key);
 
   @override
   _NoteViewPageState createState() => _NoteViewPageState();
@@ -66,11 +68,17 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
                     if (widget?.viewType == NoteMode.Add) {
                       //add
+                      widget.noteRepository.createNote(Note(_title, _text)).then((value) {
+                        Navigator.pop(context);
+                      });
                     } else {
                       //update
+                      widget.noteRepository.updateNote(Note.withId(widget.note.id, _title, _text)).then((value) {
+                        Navigator.pop(context);
+                      });
                     }
 
-                    Navigator.pop(context);
+                    //Navigator.pop(context);
                   },
                 ),
                 CustomButton(
@@ -86,7 +94,9 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     buttonColor: Colors.red,
                     onClick: () {
                       // delete
-                      Navigator.pop(context);
+                      widget.noteRepository.deleteNoteById(widget.note.id).then((value) {
+                        Navigator.pop(context);
+                      });
                     },
                   )
               ],
