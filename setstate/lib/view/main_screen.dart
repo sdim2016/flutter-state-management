@@ -37,15 +37,15 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.note),
-              title: Text('Notes')
+              label: 'Notes'
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.web),
-              title: Text('News')
+              label: 'News'
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              title: Text('Settings')
+              label: 'Settings'
           )
         ],
         currentIndex: _selectedIndex,
