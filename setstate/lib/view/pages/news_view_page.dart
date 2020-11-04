@@ -23,7 +23,7 @@ class NewsViewPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NewsTitle(this.title),
-            NewsContent(this.content) // fix maxlines 3
+            NewsContent(this.content, maxLines: 25,)
           ],
         ),
       ),

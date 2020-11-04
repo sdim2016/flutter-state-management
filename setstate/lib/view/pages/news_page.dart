@@ -50,7 +50,8 @@ class _NewsPageState extends State<NewsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         NewsTitle(news[index].title),
-                        NewsContent(news[index].content),
+                        NewsContent(news[index].content, maxLines: 3),
+                        NewsContent('Author: ${news[index].author}', maxLines: 1,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -95,7 +96,8 @@ class NewsTitle extends StatelessWidget {
 class NewsContent extends StatelessWidget {
 
   final String _text;
-  NewsContent(this._text);
+  final int maxLines;
+  NewsContent(this._text, {this.maxLines});
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +105,7 @@ class NewsContent extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10.0),
       child: Text(
         _text,
-        maxLines: 3,
+        maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
       ),
     );
