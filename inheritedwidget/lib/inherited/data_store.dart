@@ -40,4 +40,8 @@ class DataStore extends InheritedWidget {
         oldWidget.darkTheme != darkTheme;
   }
 
+  static DataStore of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<DataStore>();
+  }
+
 }
