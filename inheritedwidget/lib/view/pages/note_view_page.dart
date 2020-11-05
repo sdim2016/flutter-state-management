@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inheritedwidget/inherited/data_store.dart';
 import 'package:inheritedwidget/model/dto/note.dart';
 import 'package:inheritedwidget/utils/custom_button.dart';
 import 'package:inheritedwidget/utils/note_mode.dart';
@@ -63,11 +64,14 @@ class _NoteViewPageState extends State<NoteViewPage> {
                   onClick: () {
                     final _title = _titleController.text;
                     final _text = _textController.text;
+                    final dataStore = DataStore.of(context);
 
                     if (widget?.viewType == NoteMode.Add) {
                       //add
+                      dataStore.createNote(Note(_title, _text));
                     } else {
                       //update
+                      dataStore.updateNote(Note.withId(widget.note.id, _title, _text));
                     }
 
                     Navigator.pop(context);
@@ -86,6 +90,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     buttonColor: Colors.red,
                     onClick: () {
                       // delete
+                      DataStore.of(context).deleteNote(widget.note.id);
                       Navigator.pop(context);
                     },
                   )

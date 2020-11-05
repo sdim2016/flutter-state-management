@@ -21,6 +21,14 @@ class Note {
     this._text = newText;
   }
 
+  @override
+  bool operator ==(other) {
+    return (other is Note)
+        && other.id == id
+        && other.title == title
+        && other.text == text;
+  }
+
   Map<String, dynamic> toDatabaseJson()  =>
       {
         "id": this._id,

@@ -13,7 +13,6 @@ class _NewsPageState extends State<NewsPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print('reloaded');
     DataStore.of(context).getNews();
   }
 
