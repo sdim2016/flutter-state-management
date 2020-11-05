@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inheritedwidget/model/dto/note.dart';
+import 'package:inheritedwidget/inherited/data_store.dart';
 
 class NotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      Note('Title', 'Demo text 12321312321'),
-      Note('Title 2', 'Demo text 12321312321')
-    ];
+    final notes = [];
     return Container(
       child: ListView.builder(
           itemCount: notes.length,

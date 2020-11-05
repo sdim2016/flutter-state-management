@@ -59,7 +59,7 @@ class _ViewModelState extends State<ViewModel> {
   void getNews() {
     widget.newsRepository.getNews().then((value) {
       setState(() {
-        news = value;
+        news = value.news;
       });
     });
   }

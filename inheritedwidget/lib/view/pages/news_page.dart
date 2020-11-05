@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:inheritedwidget/model/news.dart';
+import 'package:inheritedwidget/inherited/data_store.dart';
+import 'package:inheritedwidget/model/dto/news_item.dart';
 import 'package:inheritedwidget/view/pages/news_view_page.dart';
 
-class NewsPage extends StatelessWidget {
+class NewsPage extends StatefulWidget {
+  @override
+  _NewsPageState createState() => _NewsPageState();
+}
+
+class _NewsPageState extends State<NewsPage> {
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('reloaded');
+    DataStore.of(context).getNews();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      News('News 1', 'Demo text 12321312321'),
-      News('News 2', 'Demo text 12321312321'),
-      News('News 3', 'Demo text 12321312321')
-    ];
+    List<NewsItem> news = DataStore.of(context).news;
     return Container(
       child: ListView.builder(
-          itemCount: notes.length,
+          itemCount: news.length,
           itemBuilder: (context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,8 +38,8 @@ class NewsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        NewsTitle(notes[index].title),
-                        NewsContent(notes[index].text),
+                        NewsTitle(news[index].title),
+                        NewsContent(news[index].content),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -38,7 +48,7 @@ class NewsPage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                      return NewsViewPage(title: notes[index].title, content: notes[index].text,);
+                                      return NewsViewPage(title: news[index].title, content: news[index].content,);
                                     })
                                 );
                               },
