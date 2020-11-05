@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inheritedwidget/inherited/data_store.dart';
 import 'package:inheritedwidget/inherited/view_model.dart';
 import 'package:inheritedwidget/model/repositories/news_repository.dart';
 import 'package:inheritedwidget/model/repositories/note_repository.dart';
@@ -21,10 +22,14 @@ class MyApp extends StatelessWidget {
       noteRepository: noteRepository,
       newsRepository: newsRepository,
       settingsRepository: settingsRepository,
-      child: MaterialApp(
-        title: 'Flutter State Management',
-        theme: ThemeData.light(),
-        home: MainScreen(title: 'Flutter State Management'),
+      child: Builder(
+        builder: (BuildContext context) {
+          return MaterialApp(
+            title: 'Flutter State Management',
+            theme: DataStore.of(context).darkTheme ? ThemeData.dark() : ThemeData.light(),
+            home: MainScreen(title: 'Flutter State Management'),
+          );
+        },
       ),
     );
   }

@@ -18,7 +18,7 @@ class DataStore extends InheritedWidget {
     @required this.getSettings,
     @required this.setSettings,
     @required Widget child,
-  });
+  }) : super(key: key, child: child);
 
   final List<Note> notes;
   final List<NewsItem> news;
