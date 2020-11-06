@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setstate/view/main_screen.dart';
+import 'package:providersm/view/main_screen.dart';
 
 void main() {
   runApp(MyApp());

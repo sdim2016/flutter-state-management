@@ -1,6 +1,6 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'package:setstate/model/dto/news.dart';
+import 'package:providersm/model/dto/news.dart';
 
 
 part 'api_client.g.dart';

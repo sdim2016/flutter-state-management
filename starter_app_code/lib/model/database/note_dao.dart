@@ -1,5 +1,5 @@
-import 'package:setstate/model/database/note_database.dart';
-import 'package:setstate/model/dto/note.dart';
+import 'package:providersm/model/database/note_database.dart';
+import 'package:providersm/model/dto/note.dart';
 
 class NoteDao {
   final dbProvider = DatabaseProvider.dbProvider;

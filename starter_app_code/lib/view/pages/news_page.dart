@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:setstate/model/news.dart';
-import 'package:setstate/view/pages/news_view_page.dart';
+import 'package:providersm/model/dto/news_item.dart';
+import 'package:providersm/view/pages/news_view_page.dart';
 
 class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      News('News 1', 'Demo text 12321312321'),
-      News('News 2', 'Demo text 12321312321'),
-      News('News 3', 'Demo text 12321312321')
+    final news = [
+      NewsItem(title: 'News 1', content: 'Demo text'),
+      NewsItem(title: 'News 2', content: 'Demo text'),
+      NewsItem(title: 'News 3', content: 'Demo text'),
     ];
     return Container(
       child: ListView.builder(
-          itemCount: notes.length,
+          itemCount: news.length,
           itemBuilder: (context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,8 +28,8 @@ class NewsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        NewsTitle(notes[index].title),
-                        NewsContent(notes[index].text),
+                        NewsTitle(news[index].title),
+                        NewsContent(news[index].content),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -38,7 +38,7 @@ class NewsPage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                      return NewsViewPage(title: notes[index].title, content: notes[index].text,);
+                                      return NewsViewPage(title: news[index].title, content: news[index].content,);
                                     })
                                 );
                               },

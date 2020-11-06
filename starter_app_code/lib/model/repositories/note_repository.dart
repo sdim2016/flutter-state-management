@@ -1,5 +1,5 @@
-import 'package:setstate/model/database/note_dao.dart';
-import 'package:setstate/model/dto/note.dart';
+import 'package:providersm/model/database/note_dao.dart';
+import 'package:providersm/model/dto/note.dart';
 
 class NoteRepository {
   final noteDao = NoteDao();
