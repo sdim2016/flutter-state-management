@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:providersm/view/main_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:providersm/viewmodel/news_viewmodel.dart';
 import 'package:providersm/viewmodel/settings_viewmodel.dart';
 
 void main() {
@@ -17,6 +18,13 @@ class MyApp extends StatelessWidget {
             SettingsViewModel settingsViewModel = SettingsViewModel();
             settingsViewModel.getSettings();
             return settingsViewModel;
+          },
+        ),
+        ChangeNotifierProvider<NewsViewModel>(
+          create: (BuildContext context) {
+            NewsViewModel newsViewModel = NewsViewModel();
+            newsViewModel.getNews();
+            return newsViewModel;
           },
         )
       ],

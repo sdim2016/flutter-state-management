@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:providersm/model/dto/news_item.dart';
 import 'package:providersm/view/pages/news_view_page.dart';
+import 'package:provider/provider.dart';
+import 'package:providersm/viewmodel/news_viewmodel.dart';
 
 class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final news = [
-      NewsItem(title: 'News 1', content: 'Demo text'),
-      NewsItem(title: 'News 2', content: 'Demo text'),
-      NewsItem(title: 'News 3', content: 'Demo text'),
-    ];
+    final news = Provider.of<NewsViewModel>(context).news;
     return Container(
       child: ListView.builder(
           itemCount: news.length,

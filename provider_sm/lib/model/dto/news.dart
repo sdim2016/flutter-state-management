@@ -5,9 +5,9 @@ part 'news.g.dart';
 
 @JsonSerializable()
 class News {
-  List<NewsItem> list;
+  List<NewsItem> news;
 
-  News({this.list});
+  News({this.news});
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
 }

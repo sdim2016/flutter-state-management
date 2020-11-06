@@ -8,7 +8,7 @@ part of 'news.dart';
 
 News _$NewsFromJson(Map<String, dynamic> json) {
   return News(
-    list: (json['list'] as List)
+    news: (json['news'] as List)
         ?.map((e) =>
             e == null ? null : NewsItem.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -16,5 +16,5 @@ News _$NewsFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
-      'list': instance.list,
+      'news': instance.news,
     };
