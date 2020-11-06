@@ -53,6 +53,18 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          if (_selectedIndex == 0)
+            IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return NoteViewPage(viewType: NoteMode.Add,);
+                      })
+                  );
+                })
+        ],
       ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),

@@ -32,11 +32,8 @@ class _NotesPageState extends State<NotesPage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                          return NoteViewPage(viewType: NoteMode.Edit, note: notes[index]);
-                        })
-                    );
+
+
                   },
                   child: Card(
                     elevation: 1.0,
