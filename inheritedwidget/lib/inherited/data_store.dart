@@ -31,8 +31,6 @@ class DataStore extends InheritedWidget {
   final Function getSettings;
   final Function setSettings;
 
-
-
   @override
   bool updateShouldNotify(DataStore oldWidget) {
     return !listEquals(oldWidget.notes, notes) ||

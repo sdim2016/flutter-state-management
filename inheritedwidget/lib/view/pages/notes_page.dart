@@ -20,7 +20,9 @@ class _NotesPageState extends State<NotesPage> {
 
   @override
   Widget build(BuildContext context) {
+
     List<Note> notes = DataStore.of(context).notes;
+
     return Container(
       child: ListView.builder(
           itemCount: notes.length,
