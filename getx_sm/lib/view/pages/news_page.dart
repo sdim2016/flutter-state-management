@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final news = Get.find<NewsController>().news;
-      return Container(
+    final news = Get.find<NewsController>().news;
+    return Obx(() =>
+        Container(
         child: ListView.builder(
             itemCount: news.length,
             itemBuilder: (context, index) {
@@ -54,8 +54,7 @@ class NewsPage extends StatelessWidget {
               );
             }
         ),
-      );
-    }
+      )
     );
   }
 }

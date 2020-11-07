@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:getxsm/model/dto/note.dart';
+import 'package:getxsm/controller/notes_controller.dart';
+import 'package:get/get.dart';
+import 'package:getxsm/utils/note_mode.dart';
+import 'package:getxsm/view/pages/note_view_page.dart';
 
 class NotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final notes = [
-      Note('Title', 'Demo text 12321312321'),
-      Note('Title 2', 'Demo text 12321312321')
-    ];
+    final notes = Get.find<NotesController>().notes;
     return Container(
-      child: ListView.builder(
-          itemCount: notes.length,
-          itemBuilder: (context, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Card(
-                  elevation: 1.0,
-                  margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 30.0, bottom: 30.0, left: 10.0, right: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _NoteTitle(notes[index].title),
-                        _NoteContent(notes[index].text)
-                      ],
+      child: Obx(
+          () => ListView.builder(
+            itemCount: notes.length,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(NoteViewPage(viewType: NoteMode.Edit, note: notes[index],));
+                    },
+                    child: Card(
+                      elevation: 1.0,
+                      margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 30.0, bottom: 30.0, left: 10.0, right: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _NoteTitle(notes[index].title),
+                            _NoteContent(notes[index].text)
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-          }
+                ],
+              );
+            }
+        ),
       ),
     );
   }
