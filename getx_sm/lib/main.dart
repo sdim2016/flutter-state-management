@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:getxsm/controller/settings_controller.dart';
 import 'package:getxsm/view/main_screen.dart';
-import 'package:getxsm/viewmodel/settings_viewmodel.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -10,8 +10,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetX<SettingsViewModel>(
-      init: SettingsViewModel(),
+    return GetX<SettingsController>(
+      init: SettingsController(),
       builder: (settingsViewModel) {
         return MaterialApp(
         title: 'Flutter State Management',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getxsm/viewmodel/settings_viewmodel.dart';
+import 'package:getxsm/controller/settings_controller.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:get/get.dart';
 
@@ -19,9 +19,9 @@ class SettingsPage extends StatelessWidget {
                     title: 'Dark mode',
                     leading: Icon(Icons.invert_colors),
                     onToggle: (bool value) {
-                      Get.find<SettingsViewModel>().setSettings(value);
+                      Get.find<SettingsController>().setSettings(value);
                     },
-                    switchValue: Get.find<SettingsViewModel>().darkTheme.value
+                    switchValue: Get.find<SettingsController>().darkTheme.value
                 )
               ],
             )

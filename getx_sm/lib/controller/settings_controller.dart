@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getxsm/model/repositories/settings_repository.dart';
 
-class SettingsViewModel extends GetxController {
+class SettingsController extends GetxController {
   final settingsRepository = SettingsRepository();
 
   final darkTheme = false.obs;
