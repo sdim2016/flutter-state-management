@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:providersm/model/dto/news_item.dart';
-import 'package:providersm/view/pages/news_view_page.dart';
+import 'package:getxsm/model/dto/news_item.dart';
+import 'package:getxsm/view/pages/news_view_page.dart';
 
 class NewsPage extends StatelessWidget {
   @override

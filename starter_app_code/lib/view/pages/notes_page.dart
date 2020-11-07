@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:providersm/model/dto/note.dart';
+import 'package:getxsm/model/dto/note.dart';
 
 class NotesPage extends StatelessWidget {
   @override

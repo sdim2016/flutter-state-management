@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:providersm/utils/note_mode.dart';
-import 'package:providersm/view/pages/news_page.dart';
-import 'package:providersm/view/pages/note_view_page.dart';
-import 'package:providersm/view/pages/notes_page.dart';
-import 'package:providersm/view/pages/settings_page.dart';
+import 'package:getxsm/utils/note_mode.dart';
+import 'package:getxsm/view/pages/news_page.dart';
+import 'package:getxsm/view/pages/note_view_page.dart';
+import 'package:getxsm/view/pages/notes_page.dart';
+import 'package:getxsm/view/pages/settings_page.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);

@@ -1,5 +1,5 @@
-import 'package:providersm/model/database/note_dao.dart';
-import 'package:providersm/model/dto/note.dart';
+import 'package:getxsm/model/database/note_dao.dart';
+import 'package:getxsm/model/dto/note.dart';
 
 class NoteRepository {
   final noteDao = NoteDao();
