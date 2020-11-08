@@ -1,5 +1,5 @@
-import 'package:getxsm/model/database/note_database.dart';
-import 'package:getxsm/model/dto/note.dart';
+import 'package:blocsm/model/database/note_database.dart';
+import 'package:blocsm/model/dto/note.dart';
 
 class NoteDao {
   final dbProvider = DatabaseProvider.dbProvider;

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:getxsm/model/dto/news_item.dart';
+import 'package:blocsm/model/dto/news_item.dart';
 
 part 'news.g.dart';
 

@@ -1,4 +1,4 @@
-import 'package:getxsm/model/api/api_client.dart';
+import 'package:blocsm/model/api/api_client.dart';
 import 'package:dio/dio.dart';
 
 

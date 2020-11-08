@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getxsm/view/main_screen.dart';
+import 'package:blocsm/view/main_screen.dart';
 
 void main() {
   runApp(MyApp());

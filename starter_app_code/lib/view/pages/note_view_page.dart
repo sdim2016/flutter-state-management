@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:getxsm/model/dto/note.dart';
-import 'package:getxsm/utils/custom_button.dart';
-import 'package:getxsm/utils/note_mode.dart';
+import 'package:blocsm/model/dto/note.dart';
+import 'package:blocsm/utils/custom_button.dart';
+import 'package:blocsm/utils/note_mode.dart';
 
 class NoteViewPage extends StatefulWidget {
 

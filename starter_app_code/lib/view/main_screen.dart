@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:getxsm/utils/note_mode.dart';
-import 'package:getxsm/view/pages/news_page.dart';
-import 'package:getxsm/view/pages/note_view_page.dart';
-import 'package:getxsm/view/pages/notes_page.dart';
-import 'package:getxsm/view/pages/settings_page.dart';
+import 'package:blocsm/utils/note_mode.dart';
+import 'package:blocsm/view/pages/news_page.dart';
+import 'package:blocsm/view/pages/note_view_page.dart';
+import 'package:blocsm/view/pages/notes_page.dart';
+import 'package:blocsm/view/pages/settings_page.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -53,6 +53,15 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          if (_selectedIndex == 0) IconButton(icon: Icon(Icons.add), onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) {
+                  return NoteViewPage(viewType: NoteMode.Add,);
+                })
+            );
+          })
+        ],
       ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
