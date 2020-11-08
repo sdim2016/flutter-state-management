@@ -1,4 +1,5 @@
 import 'package:blocsm/bloc/news_bloc/bloc.dart';
+import 'package:blocsm/bloc/notes_bloc/bloc.dart';
 import 'package:blocsm/bloc/settings_bloc/bloc.dart';
 import 'package:blocsm/model/repositories/news_repository.dart';
 import 'package:blocsm/model/repositories/note_repository.dart';
@@ -31,6 +32,13 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) {
               final settingsBloc = SettingsBloc(initialState: SettingsObtainedState(false), settingsRepository: settingsRepository);
               settingsBloc.add(GetSettingsEvent());
+              return settingsBloc;
+            }
+        ),
+        BlocProvider<NotesBloc>(
+            create: (BuildContext context) {
+              final settingsBloc = NotesBloc(initialState: NotesLoadingState(), noteRepository: noteRepository);
+              settingsBloc.add(GetNotesEvent());
               return settingsBloc;
             }
         ),

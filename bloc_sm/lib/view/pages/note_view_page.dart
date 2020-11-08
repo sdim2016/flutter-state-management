@@ -1,7 +1,9 @@
+import 'package:blocsm/bloc/notes_bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:blocsm/model/dto/note.dart';
 import 'package:blocsm/utils/custom_button.dart';
 import 'package:blocsm/utils/note_mode.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NoteViewPage extends StatefulWidget {
 
@@ -30,6 +32,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    NotesBloc notesBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -65,9 +68,11 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     final _text = _textController.text;
 
                     if (widget?.viewType == NoteMode.Add) {
-                      //add
+                      //create
+                      notesBloc.add(CreateNoteEvent(Note(_title, _text)));
                     } else {
                       //update
+                      notesBloc.add(UpdateNoteEvent(Note.withId(widget.note.id, _title, _text)));
                     }
 
                     Navigator.pop(context);
@@ -86,6 +91,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     buttonColor: Colors.red,
                     onClick: () {
                       // delete
+                      notesBloc.add(DeleteNoteEvent(widget.note.id));
                       Navigator.pop(context);
                     },
                   )
