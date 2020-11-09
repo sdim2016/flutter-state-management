@@ -11,8 +11,7 @@ class NewsPage extends StatelessWidget {
     return Container(
       child: Observer(
         builder: (context) {
-          final newsViewModel = Provider.of<NewsViewModel>(context);
-          final news = newsViewModel.news;
+          final news = Provider.of<NewsViewModel>(context).news;
           return ListView.builder(
               itemCount: news.length,
               itemBuilder: (context, index) {

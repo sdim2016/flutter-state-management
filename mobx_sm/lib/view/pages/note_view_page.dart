@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobxsm/mobx/notes_view_model.dart';
 import 'package:mobxsm/model/dto/note.dart';
 import 'package:mobxsm/utils/custom_button.dart';
 import 'package:mobxsm/utils/note_mode.dart';
+import 'package:provider/provider.dart';
 
 class NoteViewPage extends StatefulWidget {
 
@@ -30,6 +32,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    final notesViewModel = Provider.of<NotesViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -66,8 +69,10 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
                     if (widget?.viewType == NoteMode.Add) {
                       //add
+                      notesViewModel.createNote(Note(_title, _text));
                     } else {
                       //update
+                      notesViewModel.updateNote(Note.withId(widget.note.id, _title, _text));
                     }
 
                     Navigator.pop(context);
@@ -86,6 +91,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     buttonColor: Colors.red,
                     onClick: () {
                       // delete
+                      notesViewModel.deleteNote(widget.note.id);
                       Navigator.pop(context);
                     },
                   )

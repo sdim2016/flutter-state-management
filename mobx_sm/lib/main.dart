@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobxsm/mobx/news_view_model.dart';
+import 'package:mobxsm/mobx/notes_view_model.dart';
 import 'package:mobxsm/mobx/settings_view_model.dart';
 import 'package:mobxsm/view/main_screen.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,12 @@ class MyApp extends StatelessWidget {
           final NewsViewModel newsViewModel = NewsViewModel();
           newsViewModel.getNews();
           return newsViewModel;
-        },)
+        },),
+        Provider<NotesViewModel>(create: (context) {
+          final NotesViewModel notesViewModel = NotesViewModel();
+          notesViewModel.getNotes();
+          return notesViewModel;
+        }),
       ],
       child: Observer(
         builder: (context) {
