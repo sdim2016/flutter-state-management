@@ -16,5 +16,5 @@ News _$NewsFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
-      'list': instance.news,
+      'news': instance.news,
     };
