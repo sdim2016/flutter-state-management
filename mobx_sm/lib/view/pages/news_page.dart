@@ -8,11 +8,6 @@ import 'package:provider/provider.dart';
 class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final news = [
-      NewsItem(title: 'News 1', content: 'Demo text'),
-      NewsItem(title: 'News 2', content: 'Demo text'),
-      NewsItem(title: 'News 3', content: 'Demo text'),
-    ];
     return Container(
       child: Observer(
         builder: (context) {
