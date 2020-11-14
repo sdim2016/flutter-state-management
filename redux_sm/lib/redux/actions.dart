@@ -1,3 +1,4 @@
+import 'package:reduxsm/model/dto/news_item.dart';
 import 'package:reduxsm/model/dto/note.dart';
 
 /// Settings-related actions
@@ -8,8 +9,17 @@ class SaveSettings {
   SaveSettings(this.darkTheme);
 }
 
+class DisplaySettings {
+  bool darkTheme;
+  DisplaySettings(this.darkTheme);
+}
+
 /// News-related actions
 class GetNews {}
+
+class DisplayNews {
+  List<NewsItem> news;
+}
 
 /// Notes-related actions
 class GetNotes {}
@@ -27,4 +37,9 @@ class UpdateNote {
 class DeleteNote {
   int noteId;
   DeleteNote(this.noteId);
+}
+
+class DisplayNotes {
+  List<Note> notes;
+  DisplayNotes(this.notes);
 }
