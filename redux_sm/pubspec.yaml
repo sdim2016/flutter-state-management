@@ -32,6 +32,8 @@ dependencies:
   sqflite: ^1.3.2+1
   shared_preferences: ^0.5.12+2
   json_annotation: any
+  redux: ^4.0.0+3
+  flutter_redux: ^0.7.0
 
 dev_dependencies:
   flutter_test:
