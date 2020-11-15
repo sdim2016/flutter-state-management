@@ -47,4 +47,5 @@ void notesMiddleware(Store<AppState> store, action, NextDispatcher next) {
       noteRepository.deleteNoteById(action.noteId).then((_) => store.dispatch(GetNotes()));
     }
   }
+  next(action);
 }
