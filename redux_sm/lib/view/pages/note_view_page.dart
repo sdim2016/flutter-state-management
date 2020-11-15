@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:reduxsm/model/dto/note.dart';
+import 'package:reduxsm/redux/actions.dart';
+import 'package:reduxsm/redux/app_state.dart';
 import 'package:reduxsm/utils/custom_button.dart';
 import 'package:reduxsm/utils/note_mode.dart';
 
@@ -30,6 +33,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    final store = StoreProvider.of<AppState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -66,8 +70,10 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
                     if (widget?.viewType == NoteMode.Add) {
                       //add
+                      store.dispatch(SaveNote(Note(_title, _text)));
                     } else {
                       //update
+                      store.dispatch(UpdateNote(Note.withId(widget.note.id, _title, _text)));
                     }
 
                     Navigator.pop(context);
@@ -86,6 +92,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
                     buttonColor: Colors.red,
                     onClick: () {
                       // delete
+                      store.dispatch(DeleteNote(widget.note.id));
                       Navigator.pop(context);
                     },
                   )

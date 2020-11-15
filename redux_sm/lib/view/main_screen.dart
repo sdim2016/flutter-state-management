@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:reduxsm/redux/actions.dart';
+import 'package:reduxsm/redux/app_state.dart';
 import 'package:reduxsm/utils/note_mode.dart';
 import 'package:reduxsm/view/pages/news_page.dart';
 import 'package:reduxsm/view/pages/note_view_page.dart';
@@ -60,6 +63,9 @@ class _MainScreenState extends State<MainScreen> {
                   return NoteViewPage(viewType: NoteMode.Add,);
                 })
             );
+          }) else
+          if (_selectedIndex == 1) IconButton(icon: Icon(Icons.refresh), onPressed: () {
+            StoreProvider.of<AppState>(context, listen: false).dispatch(GetNews());
           })
         ],
       ),
