@@ -3,29 +3,35 @@ import 'package:reduxsm/model/dto/note.dart';
 import 'package:reduxsm/redux/actions.dart';
 import 'package:reduxsm/redux/app_state.dart';
 
-bool settingsReducer(AppState state, action) {
+bool settingsReducer(bool darkTheme, action) {
   if (action is DisplaySettings) {
     return action.darkTheme;
+  } else {
+    return darkTheme;
   }
 }
 
-List<Note> notesReducer(AppState state, action) {
+List<Note> notesReducer(List<Note> notes, action) {
   if (action is DisplayNotes) {
-    return action.notes;
+    return List.from(action.notes);
+  } else {
+    return notes;
   }
 }
 
-List<NewsItem> newsReducer(AppState state, action) {
+List<NewsItem> newsReducer(List<NewsItem> news, action) {
   if (action is DisplayNews) {
-    return action.news;
+    return List.from(action.news);
+  } else {
+    return news;
   }
 }
 
 bool loadingReducer(AppState state, action) => action is GetNews || action is GetNotes;
 
 AppState appStateReducer(AppState state, action) => AppState(
-  darkTheme: settingsReducer(state, action),
-  notes: notesReducer(state, action),
-  news: newsReducer(state, action),
+  darkTheme: settingsReducer(state.darkTheme, action),
+  notes: notesReducer(state.notes, action),
+  news: newsReducer(state.news, action),
   isLoading: loadingReducer(state, action),
 );
